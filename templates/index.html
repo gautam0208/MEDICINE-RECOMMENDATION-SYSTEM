@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <!-- Site made with Mobirise Online Website Builder v5.9.13, https://a.mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, a.mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/photo-1447452001602-7090c7ab2db3.jpeg" type="image/x-icon">
+  <meta name="description" content="Create a disease prediction system to get instant diagnosis and personalized diet recommendations based on symptoms.">
+  <title>Disease Prediction System</title>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/366578/assets/web/assets/mobirise-icons2/mobirise2.css?rnd=1711524410243">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/366578/assets/bootstrap/css/bootstrap.min.css?rnd=1711524410243">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/366578/assets/bootstrap/css/bootstrap-grid.min.css?rnd=1711524410243">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/366578/assets/bootstrap/css/bootstrap-reboot.min.css?rnd=1711524410243">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/366578/assets/dropdown/css/style.css?rnd=1711524410243">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/366578/assets/socicon/css/styles.css?rnd=1711524410243">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/366578/assets/theme/css/style.css?rnd=1711524410243">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/366578/assets/css/mbr-additional.css?rnd=1711524410243" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+         .arrow_down
+         {
+           border:4px solid white;
+           border-width: 0 5px 5px 0;
+           padding: 3px;
+           transform: rotate(45deg);
+           -webkit-transform: rotate(45deg);
+           position:absolute;
+           margin:1% 0 0 95%;
+         }
+         #symptoms_option:hover
+         {
+             box-shadow:1px 1px 3px 3px lightgray;
+         }
+         #selected_sym input
+         {
+           width:100%;
+           padding:2% 2%;
+           color:white;
+           border:2px solid lightgray;
+           border-radius:10px;
+           background-color:gray;
+           cursor:pointer;
+         }
+          #input_close{
+         position:absolute;
+         margin:2.5%  0 0 94%;
+         font-size:26px;
+         cursor:pointer;
+         color:white;
+     }
+     #input_close:hover{
+          color:black;
+
+     }
+      ::placeholder{
+        color:white;
+        text-transform: uppercase;
+      }
+      form button,.button button
+      {
+              font-size:larger;
+               font-weight: 700;
+               color:black;
+               border:2px solid lightgray;
+               border-radius:100px;
+                box-shadow:1px 2px 2px 2px lightgray;
+               background-image:linear-gradient(gray, white);
+      }
+       form button
+       {
+            margin:6% 25%;
+               padding:2.5% 20%;
+        }
+        form button:hover,  .button button:hover
+         {
+
+            background-image:linear-gradient(white, gray);
+            color:white;
+         }
+      .button button
+       {
+            margin-left: 75%;
+               padding:1.5% 4%;
+        }
+
+        .symptoms ul {
+         list-style-type: none;
+         padding: 0;
+         margin: 0;
+       }
+
+       .left {
+         text-align: left;
+       }
+
+       .middle_left,.middle_right {
+         text-align: center;
+       }
+
+       .right {
+         text-align: right;
+       }
+
+       .left li, .middle_left li,.middle_right li, .right li {
+         padding: 8px 6px; /* Padding around the content */
+         margin-bottom: 5px; /* Spacing between items */
+         border-radius: 5px; /* Rounded corners */
+         border:2px solid lightblue;
+         text-align: left;
+         cursor:pointer;
+
+       }
+       #result{
+         margin-top:3%;
+         margin-left:6%;
+         width:auto;
+         color:gray;
+         font-size:18px;
+         max-width: fit-content;
+         text-align: center;
+     }
+       .selected {
+         background-color: lightblue; /* Change to your desired background color */
+     }
+    </style>
+</head>
+<body>
+
+  <section data-bs-version="5.1" class="menu menu2 cid-u8cB07EqWr" once="menu" id="menu-5-u8cB07EqWr">
+
+
+	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+		<div class="container">
+			<div class="navbar-brand">
+				<span class="navbar-logo">
+					<a href="">
+						<img src="{{ url_for('static', filename='photo-1447452001602-7090c7ab2db3.jpeg') }}" alt="" style="height: 4.3rem;">
+					</a>
+				</span>
+				<span class="navbar-caption-wrap"><a class="navbar-caption  text-black display-5 " href="">CureConnect</a></span>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                    <li class="nav-item bg-primary rounded-circle ">
+						<a class="nav-link link text-white display-4" href="/index">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black display-4" href="/about" >About Us</a>
+					</li>
+					<li class="nav-item">
+                        <a class="nav-link link text-black display-4" href="/contact">Contact</a>
+					</li>
+                       <li class="nav-item">
+						<a class="nav-link link text-black display-4" href="/developer">Developer</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black display-4" href="/blog">Blog</a>
+					</li>
+                    <li class="nav-item">
+						<a class="nav-link link text-black display-4" href="/services">Services</a>
+					</li>
+					<li class="nav-item">
+                        <a class="nav-link link text-black display-4" href="/logout_user">Logout</a>
+					</li>
+                </ul>
+
+
+				<div class="navbar-buttons mbr-section-btn">
+					<a class="btn btn-primary display-4" href="/appointment">Appointment</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+</section>
+
+    <div style="position:relative;display:inline-block;">
+             <img src="{{url_for('static',filename='a.png') }}" alt="" style="opacity:0.7;">
+
+        <div id="greet" style="position:absolute;top:17%;margin:0 25%;height:auto;width:50%;text-align:center;color:green;padding:8px;background-color:black;border:4px solid gray;border-radius:20px;">
+                <h4 style="">Hi {{user_name}} ! WELCOME TO CURECONNECT!!!</h4>
+        </div>
+
+         <div class="main_container" style="position:absolute;top:22%;color:black;background-color:black;opacity:0.8;border-radius:20px;height:auto;width:60%;margin:4% 20%;padding:20px 40px;">
+             {% if msg %}
+               <h6 id="msg" style="text-align:center;color:red;">{{msg}}</h6>
+                   <script>
+                        setTimeout(function(){
+                              document.getElementById("msg").textContent="";
+                        },3000 );
+                   </script>
+             {% endif %}
+             <div id="symptoms_option" style="position:relative;margin-top:6%;width:100%;padding:2% 0;border:2px solid lightgray;border-radius:10px;background-color:gray;cursor:pointer;">
+                 <i class="arrow_down" style=""></i>
+                  <button id="select_sym" style="padding-left:10px;color:white;">SELECT SYMPTOMS........... </button>
+              </div>
+
+             <form action="/predict" method="post">
+                   <div  id="selected_sym" style="position:relative;margin-top:4%;">
+                        <i class="fa fa-times-circle" id="input_close"></i>
+                        <input type="text" name="selected_symptoms" id="selected_symptoms" value="" placeholder="selected symptoms appear here" readonly>
+                      </div>
+
+                     <button type="submit" id="predict">Predict</button>
+
+                  </form>
+         </div>
+
+            <div class="symptoms_container" id="content" style="position:absolute;top:17%;width:80%;height:auto;background-color:white;;display:none;
+                                 margin:0 10%;opacity:1; border-radius: 20px;border:2px solid lightgray;z-index:1;padding-bottom:2%;">
+
+                <div id="header" style="position:relative;height:auto;width:100%;">
+
+                    <i class="fa fa-times-circle" id="close" style="margin:1% 2% 0 0;color:red;float:right;font-size:24px;cursor:pointer;"></i>
+                  <h4 style="padding-top:10px;text-align:center;color:green;">Select Symptoms from the List!</h4>
+
+                    <div id="result"></div>
+
+                  <div class="button" style="margin-bottom:2%;">
+                    <button  id="done">SELECT</button>
+                  </div>
+
+                </div>
+
+
+                <div class="symptoms" style="display: flex;justify-content: space-between; padding:0 6%;height:350px;overflow-y:auto;">
+                    <div class="left">
+                        <ul id="list1">
+                            <li value="abdominal_pain" >abdominal_pain</li>
+                            <li value="abnormal_menstruation" >abnormal_menstruation</li>
+                            <li value="acidity" >acidity</li>
+                    <li value="acute_liver_failure" >acute_liver_failure</li>
+                    <li value="altered_sensorium" >altered_sensorium</li>
+                    <li value="anxiety" >anxiety</li>
+                    <li value="back_pain" >back_pain</li>
+                    <li value="belly_pain" >belly_pain</li>
+                    <li value="blackheads" >blackheads</li>
+                    <li value="bladder_discomfort" >bladder_discomfort</li>
+                    <li value="blister" >blister</li>
+                    <li value="blood_in_sputum" >blood_in_sputum</li>
+                    <li value="bloody_stool" >bloody_stool</li>
+                    <li value="blurred_and_distorted_vision" >blurred_and_distorted_vision</li>
+                    <li value="breathlessness" >breathlessness</li>
+                    <li value="brittle_nails" >brittle_nails</li>
+                    <li value="bruising" >bruising</li>
+                    <li value="burning_micturition" >burning_micturition</li>
+                    <li value="chest_pain" >chest_pain</li>
+                    <li value="chills" >chills</li>
+                    <li value="cold_hands_and_feets" >cold_hands_and_feets</li>
+                    <li value="coma" >coma</li>
+                    <li value="congestion" >congestion</li>
+                    <li value="constipation" >constipation</li>
+                    <li value="continuous_feel_of_urine" >continuous_feel_of_urine</li>
+                    <li value="continuous_sneezing" >continuous_sneezing</li>
+                    <li value="cough" >cough</li>
+                    <li value="cramps" >cramps</li>
+                    <li value="dark_urine" >dark_urine</li>
+                    <li value="dehydration" >dehydration</li>
+                    <li value="depression" >depression</li>
+                    <li value="diarrhoea" >diarrhoea</li>
+                    <li value="dischromic _patches" >dischromic _patches</li>
+               </ul>
+             </div>
+
+          <div class="middle_left">
+            <ul id="list2">
+                <li value="distention_of_abdomen" >distention_of_abdomen</li>
+                <li value="dizziness" >dizziness</li>
+                <li value="drying_and_tingling_lips" >drying_and_tingling_lips</li>
+                <li value="enlarged_thyroid" >enlarged_thyroid</li>
+                <li value="excessive_hunger" >excessive_hunger</li>
+                <li value="extra_marital_contacts" >extra_marital_contacts</li>
+                <li value="family_history" >family_history</li>
+                <li value="fast_heart_rate" >fast_heart_rate</li>
+                <li value="fatigue" >fatigue</li>
+                <li value="fluid_overload" >fluid_overload</li>
+                <li value="foul_smell_of urine" >foul_smell_of urine</li>
+                <li value="headache" >headache</li>
+                <li value="high_fever" >high_fever</li>
+                <li value="hip_joint_pain" >hip_joint_pain</li>
+                <li value="history_of_alcohol_consumption" >history_of_alcohol_consumption</li>
+                <li value="increased_appetite" >increased_appetite</li>
+                <li value="indigestion" >indigestion</li>
+                <li value="inflammatory_nails" >inflammatory_nails</li>
+                <li value="internal_itching" >internal_itching</li>
+                <li value="irregular_sugar_level" >irregular_sugar_level</li>
+                <li value="irritability" >irritability</li>
+                <li value="irritation_in_anus" >irritation_in_anus</li>
+                <li value="itching" >itching</li>
+                <li value="joint_pain" >joint_pain</li>
+                <li value="knee_pain" >knee_pain</li>
+                <li value="lack_of_concentration" >lack_of_concentration</li>
+                <li value="lethargy" >lethargy</li>
+                <li value="loss_of_appetite" >loss_of_appetite</li>
+                <li value="loss_of_balance" >loss_of_balance</li>
+                <li value="loss_of_smell" >loss_of_smell</li>
+                <li value="malaise" >malaise</li>
+                <li value="mild_fever" >mild_fever</li>
+                <li value="mood_swings" >mood_swings</li>
+           </ul>
+          </div>
+
+           <div class="middle_right">
+            <ul id="list3">
+                <li value="movement_stiffness" >movement_stiffness</li>
+                <li value="mucoid_sputum" >mucoid_sputum</li>
+                <li value="muscle_pain" >muscle_pain</li>
+                <li value="muscle_wasting" >muscle_wasting</li>
+                <li value="muscle_weakness" >muscle_weakness</li>
+                <li value="nausea" >nausea</li>
+                <li value="neck_pain" >neck_pain</li>
+                <li value="nodal_skin_eruptions" >nodal_skin_eruptions</li>
+                <li value="obesity" >obesity</li>
+                <li value="pain_behind_the_eyes" >pain_behind_the_eyes</li>
+                <li value="pain_during_bowel_movements" >pain_during_bowel_movements</li>
+                <li value="pain_in_anal_region" >pain_in_anal_region</li>
+                <li value="painful_walking" >painful_walking</li>
+                <li value="palpitations" >palpitations</li>
+                <li value="passage_of_gases" >passage_of_gases</li>
+                <li value="patches_in_throat" >patches_in_throat</li>
+                <li value="phlegm" >phlegm</li>
+                <li value="polyuria" >polyuria</li>
+                <li value="prominent_veins_on_calf" >prominent_veins_on_calf</li>
+                <li value="puffy_face_and_eyes" >puffy_face_and_eyes</li>
+                <li value="pus_filled_pimples" >pus_filled_pimples</li>
+                <li value="receiving_blood_transfusion" >receiving_blood_transfusion</li>
+                <li value="receiving_unsterile_injections" >receiving_unsterile_injections</li>
+                <li value="red_sore_around_nose" >red_sore_around_nose</li>
+                <li value="red_spots_over_body" >red_spots_over_body</li>
+                <li value="redness_of_eyes" >redness_of_eyes</li>
+                <li value="restlessness" >restlessness</li>
+                <li value="runny_nose" >runny_nose</li>
+                <li value="rusty_sputum" >rusty_sputum</li>
+                <li value="scurring" >scurring</li>
+                <li value="shivering" >shivering</li>
+                <li value="silver_like_dusting" >silver_like_dusting</li>
+                <li value="sinus_pressure" >sinus_pressure</li>
+            </ul>
+           </div>
+
+            <div class="right">
+                <ul id="list4">
+                    <li value="skin_peeling" >skin_peeling</li>
+                    <li value="skin_rash" >skin_rash</li>
+                    <li value="slurred_speech" >slurred_speech</li>
+                    <li value="small_dents_in_nails" >small_dents_in_nails</li>
+                    <li value="spinning_movements" >spinning_movements</li>
+                    <li value="spotting_ urination" >spotting_ urination</li>
+                    <li value="stiff_neck" >stiff_neck</li>
+                    <li value="stomach_bleeding" >stomach_bleeding</li>
+                    <li value="stomach_pain" >stomach_pain</li>
+                    <li value="sunken_eyes" >sunken_eyes</li>
+                    <li value="sweating" >sweating</li>
+                    <li value="swelled_lymph_nodes" >swelled_lymph_nodes</li>
+                    <li value="swelling_joints" >swelling_joints</li>
+                    <li value="swelling_of_stomach" >swelling_of_stomach</li>
+                    <li value="swollen_blood_vessels" >swollen_blood_vessels</li>
+                    <li value="swollen_extremeties" >swollen_extremeties</li>
+                    <li value="swollen_legs" >swollen_legs</li>
+                    <li value="throat_irritation" >throat_irritation</li>
+                    <li value="toxic_look_(typhos)" >toxic_look_(typhos)</li>
+                    <li value="ulcers_on_tongue" >ulcers_on_tongue</li>
+                    <li value="unsteadiness" >unsteadiness</li>
+                    <li value="visual_disturbances" >visual_disturbances</li>
+                    <li value="vomiting" >vomiting</li>
+                    <li value="watering_from_eyes" >watering_from_eyes</li>
+                    <li value="weakness_in_limbs" >weakness_in_limbs</li>
+                    <li value="weakness_of_one_body_side" >weakness_of_one_body_side</li>
+                    <li value="weight_gain" >weight_gain</li>
+                    <li value="weight_loss" >weight_loss</li>
+                    <li value="yellow_crust_ooze" >yellow_crust_ooze</li>
+                    <li value="yellow_urine" >yellow_urine</li>
+                    <li value="yellowing_of_eyes" >yellowing_of_eyes</li>
+                    <li value="yellowish_skin" >yellowish_skin</li>
+               </ul>
+            </div>
+
+              </div>
+            </div>
+
+    </div>
+
+<script>
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+    const toggleButton = document.getElementById('symptoms_option');
+    const content = document.getElementById('content');
+    toggleButton.addEventListener('click', function() {
+      if (content.style.display === 'none') {
+        content.style.display = 'block';
+
+      } else {
+        content.style.display = 'none';
+
+      }
+    });
+
+
+        var listItems = document.querySelectorAll("#list1 li,#list2 li,#list3 li,#list4 li");
+        var resultDiv = document.getElementById("result");
+        var selectedValues = []; // Array to store selected values
+
+        // Add click event listener to each li element
+        listItems.forEach(function(item) {
+            item.addEventListener("click", function() {
+                var value = this.getAttribute("value");
+
+                // Toggle selected state
+                if (this.classList.contains("selected")) {
+                    this.classList.remove("selected");
+                    selectedValues = selectedValues.filter(function(val) {
+                        return val !== value;
+                    });
+                } else {
+                    this.classList.add("selected");
+                    selectedValues.push(value);
+                }
+
+
+            resultDiv.textContent ="Symptoms Selected: "+ selectedValues.join(", ");
+            });
+        });
+
+        // Add click event listener to the select button
+        document.getElementById("done").addEventListener("click", function() {
+          //Add the symptoms in input field
+            var inputField = document.getElementById("selected_symptoms");
+            inputField.value = selectedValues.join(", ");
+
+            //Hide the list of symptoms when select button is clicked
+            if(selectedValues.length!=0)
+            {
+              var content=document.getElementById("content");
+              content.style.display='none';
+
+                //empty the array
+            selectedValues=[]
+
+            //clear div result area
+            resultDiv.textContent="";
+
+         //remove the background color from the selected symptoms when the select button is pressed
+              listItems.forEach(function(item) {
+                      item.classList.remove("selected");
+                  });
+            }
+            else
+            {
+              resultDiv.textContent="Select Atleast a Symptom."
+            }
+
+
+
+
+        });
+
+        document.getElementById("close").addEventListener("click", function() {
+          var content=document.getElementById("content");
+           content.style.display='none';
+
+            //clear div result area
+            resultDiv.textContent="";
+
+
+                //empty the array
+            selectedValues=[]
+
+              //remove the background color from the selected symptoms when the select button is pressed
+              listItems.forEach(function(item) {
+                      item.classList.remove("selected");
+                  });
+        });
+
+       document.getElementById("input_close").addEventListener("click", function() {
+                    var inputField = document.getElementById("selected_symptoms");
+
+                    if(inputField!="")
+                        inputField.value = "";
+        });
+
+
+    });
+   </script>
+
+
+<section data-bs-version="5.1" class="footer3 cid-u8cB07N9uH" once="footers" id="footer-6-u8cB07N9uH">
+
+    <div class="container">
+        <div class="row">
+            <div class="row-links">
+                <ul class="header-menu">
+
+                <li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/about" class="text-white">About</a>
+                  </li>
+                    <li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/services" class="text-white">Services</a>
+                  </li>
+                 <li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/contact" class="text-white">Contact</a>
+                  </li>
+                    <li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/blog" class="text-white">Blog</a>
+                    </li>
+                    <li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/developer" class="text-white">Developer</a>
+                  </li>
+                </ul>
+              </div>
+
+
+            <div class="col-12 mt-4">
+                <p class="mbr-fonts-style copyright display-7">© CureConnect. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/ytplayer/index.js"></script>
+  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="assets/vimeoplayer/player.js"></script>
+  <script src="assets/scrollgallery/scroll-gallery.js"></script>
+  <script src="assets/masonry/masonry.pkgd.min.js"></script>
+  <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  <script src="assets/formoid/formoid.min.js"></script>
+
+
+
+</body>
+</html>

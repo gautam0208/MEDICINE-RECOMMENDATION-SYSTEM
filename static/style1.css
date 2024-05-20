@@ -1,0 +1,162 @@
+  .container{
+   margin:0 6%;
+    background-color: white;
+    border-radius: 20px;
+    border:2px solid lightgray;
+    max-height:130%;
+    overflow-y:auto;
+    position: absolute;
+    top: 0; /* adjust as per your need */
+     z-index: 0;
+    display:none;
+  }
+    .symptoms {
+        display: flex;
+        justify-content: space-between; /* Aligns left, middle, and right to respective sides */
+        padding:0 6%;
+        margin-top:3%;
+        margin-bottom: 4%;
+      }
+
+      .symptoms ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .left {
+        text-align: left;
+
+      }
+
+      .middle_left,.middle_right {
+        text-align: center;
+      }
+
+      .right {
+        text-align: right;
+      }
+
+      .left li, .middle_left li,.middle_right li, .right li {
+        padding: 10px; /* Padding around the content */
+        margin-bottom: 5px; /* Spacing between items */
+        border-radius: 5px; /* Rounded corners */
+        border:2px solid lightblue;
+        text-align: left;
+        cursor:pointer;
+      }
+
+     .button button{
+        padding:1rem 4rem;
+        background-color:rgb(254, 37, 37);
+        color:white;
+        font-size:18px;
+        font-weight:bolder;
+        border:none;
+        border-radius:10px;
+        margin:0 0 0 78%;
+        cursor:pointer;
+      }
+      .button button:hover{
+           background-color: rgb(186, 12, 12);
+      }
+      .selected {
+        background-color: lightblue; /* Change to your desired background color */
+    }
+    #result{
+        margin-top:3%;
+        margin-left:6%;
+        width:auto;
+        color:rgb(68, 127, 255);
+        max-width: fit-content;
+      font-size: larger;
+        text-align: center;
+    }
+    .symptoms_option button{
+      margin:4% 6% 0;
+      height:60px;
+      width:88%;
+      border:none;
+      border-radius: 20px;
+      color:rgb(87, 200, 251);
+      font-weight: bolder;
+      font-size: 18px;
+      cursor:pointer;
+    }
+    .selected_sym input{
+      margin:2% 0 0 6%;
+      height:60px;
+      width:88%;
+      color:green;
+      border:1px solid gray;
+      border-radius: 20px;
+      font-weight: bolder;
+      max-width: 88%;
+      font-size: 18px;
+      text-align: center;
+    }
+    #selected_symptoms::placeholder
+    {
+      font-weight: 900;
+      text-align: center;
+      font-size: larger;
+      color: rgb(184, 193, 195);
+    }
+
+    form button{
+           margin:4% 30%;
+            padding: 1% 20%;
+            border:none;
+            border-radius:10px;
+            font-size:larger;
+              font-weight: 700;
+    }
+    #input_close{
+        position:absolute;
+        margin:3.3%  0 0 88%;
+        font-size:26px;
+        cursor:pointer
+    }
+    #input_close:hover{
+         color:white;
+         background-color:black;
+    }
+
+    .arrow_down {
+  border:4px solid rgb(87, 200, 251);
+  border-width: 0 5px 5px 0;
+  padding: 3px;
+   transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+ position:absolute;
+  margin:6%  0 0 88%;
+  cursor:pointer;
+}
+.footer{
+    display:flex;
+    position:relative;
+    background:lightgray;
+    margin-top:9%;
+    height:50%;
+     padding:6% 0 0 4%;
+}
+.myimg_foot{
+
+       height:160px;
+       width:200px;
+       border:2px solid gray;
+       border-radius:50%;
+}
+.text{
+   margin:4% 15% 0 14%;
+}
+.footer .left_link a,.footer .right_link a{
+ display:block;
+  margin-top:6%;
+ text-decoration:none;
+ color:black;
+ padding:10px 14px;
+}
+.footer .right_link{
+  margin-left:16%;
+}

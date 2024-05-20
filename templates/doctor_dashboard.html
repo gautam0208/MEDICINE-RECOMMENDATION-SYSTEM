@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <a class="navbar-brand" href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> CureConnect  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <style >
+      .btn-outline-light:hover{
+        color: #25bef7;
+        background-color: #f8f9fa;
+        border-color: #f8f9fa;
+      }
+    .bg-primary {
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #342ac1;
+    border-color: #007bff;
+}
+.text-primary {
+    color: #342ac1!important;
+}
+
+
+  </style>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item">
+        <a class="nav-link" href="/doc_logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </li>
+    </ul>
+
+  </div>
+             <h3 style = "margin-right:40%;color:white;font-family: 'IBM Plex Sans', sans-serif;"> Doctor Dashboard</h3>
+</nav>
+  </head>
+  <style type="text/css">
+    button:hover{cursor:pointer;}
+    #inputbtn:hover{cursor:pointer;}
+  </style>
+  <body style="padding-top:50px;">
+   <div class="container-fluid" style="margin-top:50px;">
+       {% if msg %}
+       <h5 id="msg">{{msg}}</h5>
+        <script>
+            setTimeout(function(){
+                document.getElementById("msg").textContent="";
+            },3000);
+        </script>
+       {% endif %}
+    {% if success_msg %}
+       <h5 id="success_msg" style="text-align:center;color:green;">{{success_msg}}</h5>
+        <script>
+            setTimeout(function(){
+                document.getElementById("success_msg").textContent="";
+            },3000);
+        </script>
+       {% endif %}
+    <h3 style = "margin-left: 40%; padding-bottom: 20px;font-family:Arial;"> Welcome &nbsp{{ doc_name }}({{ doc_empid }})  </h3>
+    <div class="row">
+  <div class="col-md-4" style="max-width:15%;margin-top: 3%;">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" href="#list-dash" role="tab" aria-controls="home" data-toggle="list">Dashboard</a>
+      <a class="list-group-item list-group-item-action" href="#list-app" id="list-app-list" role="tab" data-toggle="list" aria-controls="home">Appointments</a>
+
+    </div><br>
+  </div>
+
+
+  <div class="col-md-8" style="margin-top: 3%;">
+    <div class="tab-content" id="nav-tabContent" style="width: 950px;">
+      <div class="tab-pane fade show active" id="list-dash" role="tabpanel" aria-labelledby="list-dash-list">
+
+              <div class="container-fluid container-fullw bg-white" >
+              <div class="row">
+
+               <div class="col-sm-4" style="left: 10%">
+                  <div class="panel panel-white no-radius text-center">
+                    <div class="panel-body">
+                      <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-list fa-stack-1x fa-inverse"></i> </span>
+                      <h4 class="StepTitle" style="margin-top: 5%;"> View Appointments</h4>
+
+                      <script>
+                        function clickDiv(id) {
+                          document.querySelector(id).click();
+
+                      </script>
+                      <p class="links cl-effect-1">
+
+                        <a href="#list-app" id="app_btn" onclick="clickDiv('#list-app-list')">
+                          Appointment List
+                        </a>
+
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-sm-4" style="left: 15%">
+                  <div class="panel panel-white no-radius text-center">
+                    <div class="panel-body">
+                      <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-list-ul fa-stack-1x fa-inverse"></i> </span>
+                      <h4 class="StepTitle" style="margin-top: 5%;"> Prescriptions</h4>
+
+                      <p class="links cl-effect-1">
+                        <a href="#list-pres" onclick="clickDiv('#list-pres-list')">
+                          Prescription List
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+             </div>
+           </div>
+         </div>
+    <div class="tab-pane fade" id="list-app" role="tabpanel" aria-labelledby="list-home-list">
+
+              <table class="table table-hover">
+                <thead>
+                  <tr  style="font-size:14px;">
+                      <th scope="col">Appointment ID</th>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Appointment Date</th>
+                    <th scope="col">Appointment Time</th>
+                    <th scope="col">Current Status</th>
+                    <th scope="col">Prescribe</th>
+
+                  </tr>
+                </thead>
+
+                <tbody >
+                 {% for row in appointment %}
+                         {% if spec ==row['Specialization'] and doc_empid==row['DOC_EMP_ID'] %}
+
+                      <tr style="font-size:13px;">
+                      <td>{{ row['Appointment_ID'] }}</td>
+                      <td>{{ row['Patient_ID'] }}</td>
+                      <td>{{ row['Patient_FName'] }} {{ row['Patient_LName'] }}</td>
+                          <td>{{ row['Gender'] }}</td>
+                      <td  style="font-size:12px;max-width:120px;word-wrap: break-word;">{{ row['Email'] }}</td>
+                      <td>{{ row['Patient_Contact'] }}</td>
+                      <td>{{ row['Date'] }}</td>
+                      <td>{{ row['Time'] }}</td>
+
+                     <td>
+
+                 <form method="post" action="/approve/{{ row['Appointment_ID'] }}">
+                     <button class="toggle-button" id="approve_{{ row['Appointment_ID'] }}" value="{{ row['Appointment_ID'] }}" onclick="sendToFlask()"  style="background-color:yellow;">Pending</button>
+
+                 </form>
+                     </td>
+
+
+                        <td >
+
+
+                        <button  id="prescribe_{{ row['Appointment_ID'] }}"  style="display:none;width:100px;background-color:white;border:none;color:black;">
+                            <span >
+                                         <i class="fa fa-file" id="file_{{ row['Appointment_ID'] }}"></i>
+                                           <p id="pres_{{ row['Appointment_ID'] }}" style="color:red;font-size:12px;">not prescribed!</p>
+                                    </span>
+                        </button>
+                   <button  id="view_pres_{{ row['Appointment_ID'] }}"  style="display:none;width:100px;background-color:white;border:none;color:black;">
+                            <span >
+
+                                          <i class="fa fa-eye" id="view_{{ row['Appointment_ID'] }}" ></i>
+                                           <p style="color:green;font-size:12px;"> prescribed!</p>
+                                    </span>
+                        </button>
+                        </td>
+                          <div id="view_report" style="display:none;position: fixed;top: 0; left: 0;width: 100%;height: 100%; background-color: rgba(0, 0, 0, 0.9);z-index: 9999;">
+                               <div id="r_body" style="position:absolute;top:1%;left:10%;background-color:white;width:80%;height:auto;border-radius:0 0 10px 10px;box-shadow:0 0 10px 5px gray; ">
+
+                                 <div id="top" style="text-align:center;">
+                                       <h3>CureConnect Report</h3>
+                                     <p style="font-size:12px;"><b>Connect: </b>itscureconnect@gmail.com</p>
+
+                                 </div>
+                                  <hr>
+                                 <div id="pat_info" style="float:left;display:flex;height:20%;width:60%;font-size:12px;border-right:1px solid black;">
+                                      <div style="margin-left:8%;">
+                                           <p ><b>Patient Name: </b></p>
+                                       <p ><b>Email: </b></p>
+                                       <p ><b>Phone: </b></p>
+                                      </div>
+                                     <div id="description_val1">
+                                           <p id="patname"></p>
+                                       <p id="patemail"></p>
+                                       <p id="patcontact"></p>
+                                     </div>
+                                     <div style="margin-left:20%;">
+                                          <p ><b>Gender: </b></p>
+                                       <p ><b>Appointment Date: </b></p>
+                                       <p><b>Appointment Time: </b></p>
+                                     </div>
+                                     <div id="description_val2">
+                                           <p id="patgender"></p>
+                                       <p id="appdate"></p>
+                                       <p id="apptime"></p>
+                                     </div>
+                                 </div>
+
+                                 <div id="doc_info" style="float:right;height:20%;width:40%;font-size:12px;line-height:1;">
+                                      <div style="float:left;margin-left:8%;">
+                                           <p><b>Doctor Name: </b></p>
+                                        <p><b>Doctor ID: </b></p>
+                                       <p><b>Specialization: </b> </p>
+                                       <p><b>Fees: </b></p>
+                                      </div>
+
+                                     <div style="float:right;margin-right:40%;">
+                                          <p id="docname"></p>
+                                        <p id="docid"></p>
+                                       <p id="docspec"> </p>
+                                       <p id="docfees"></p>
+                                     </div>
+
+                                 </div>
+                                 <div style="clear:both;"></div>
+                                 <hr>
+                                    <div id="pat_desc" >
+                                         <h5 style="margin-left:4%;text-decoration:underline;">Patient Clinical Description</h5>
+                                        <div style="float:left;margin-left:10%;font-size:12px;line-height:1;">
+                                            <p><b>SYMPTOMS: </b></p>
+                                            <p><b>COMPLICATIONS: </b></p>
+                                            <p><b>PREDICTION: </b></p>
+                                            <p><b>ADDITIONAL REPORT: </b></p>
+                                        </div>
+
+                                        <div id="description" style="float:left;margin-left:1%;font-size:12px;line-height:1;">
+                                               <p id="symp"></p>
+                                             <p id="compli"></p>
+                                             <p id="diseas"></p>
+                                                 <div style="display:flex;">
+                                            <p id="fileText" style="color:#2180E6"></p>
+                                                  <a href="{{url_for('get_file')}}">
+                                                <form action="/download" method="post" >
+                                                    <input type="text" id="appoint_val" name="appoint_val" style="display:none;">
+                                                          <button style="margin-left:10px;background-color:green;color:white;border:none;border-radius:10px;"><i class="fa fa-download" style="font-size:18px"></i></button>
+                                                </form>
+                                              </a>
+                                                 </div>
+                                        </div>
+                                 </div>
+                                  <div style="clear:both;"></div>
+                                 <hr>
+                                 <div id="doc_advice" >
+                                     <h5 style="margin-left:4%;text-decoration:underline;">Doctor Suggestions</h5>
+
+                                            <div style="float:left;font-size:12px;margin:1% 1% 0 6%;">
+                                            <p><b>Found Diseases: </b></p>
+
+                                            <p><b>Diseases Description: </b></p>
+                                            <p><b>Precautions: </b></p>
+                                        </div>
+
+                                         <div style="float:left;width:30%;max-width:30%;font-size:12px;margin-top:1%;">
+                                           <p id="diseases"></p>
+                                             <p id="disease_desc"></p>
+                                             <p id="pres"></p>
+                                         </div>
+
+                                            <div style="float:left;font-size:12px;margin:1% 1% 0 2%;">
+                                            <p><b>Medications: </b></p>
+                                            <p><b>Diet: </b></p>
+                                            <p><b>Workout: </b></p>
+                                        </div>
+
+                                              <div style="float:left;font-size:12px;max-width:35%;margin-top:1%;">
+                                             <p id="medic"></p>
+                                                  <p id="diets"></p>
+                                                  <p id="workouts"></p>
+                                             </div>
+                                      <button id="close" name="cancel" style="margin:2% 0 1% 80%;background-color:red;color:white;border:none;border-radius:5px;">Cancel</button>
+
+
+                                 </div>
+
+
+                             </div>
+                          </div>
+
+                     <div id="report_over" style="display:none;position: fixed;top: 0; left: 0;width: 100%;height: 100%; background-color: rgba(0, 0, 0, 0.9);z-index: 9999;">
+                             <div id="report_body" style="position:absolute;top:1%;left:10%;background-color:white;width:80%;height:auto;border-radius:0 0 10px 10px;box-shadow:0 0 10px 5px gray; ">
+
+                                 <div id="header" style="text-align:center;">
+                                       <h3>CureConnect Report</h3>
+                                     <p style="font-size:12px;"><b>Connect: </b>itscureconnect@gmail.com</p>
+
+                                 </div>
+                                  <hr>
+                                 <div id="patient_info" style="float:left;display:flex;height:20%;width:60%;font-size:12px;border-right:1px solid black;">
+                                      <div style="margin-left:8%;">
+                                           <p ><b>Patient Name: </b></p>
+                                       <p ><b>Email: </b></p>
+                                       <p ><b>Phone: </b></p>
+                                      </div>
+                                     <div id="desc_val1">
+                                           <p id="pname"></p>
+                                       <p id="pemail"></p>
+                                       <p id="pcontact"></p>
+                                     </div>
+                                     <div style="margin-left:20%;">
+                                          <p ><b>Gender: </b></p>
+                                       <p ><b>Appointment Date: </b></p>
+                                       <p><b>Appointment Time: </b></p>
+                                     </div>
+                                     <div id="desc_val2">
+                                           <p id="pgender"></p>
+                                       <p id="date"></p>
+                                       <p id="time"></p>
+                                     </div>
+                                 </div>
+
+                                 <div id="doctor_info" style="float:right;height:20%;width:40%;font-size:12px;line-height:1;">
+                                      <div style="float:left;margin-left:8%;">
+                                           <p><b>Doctor Name: </b></p>
+                                        <p><b>Doctor ID: </b></p>
+                                       <p><b>Specialization: </b> </p>
+                                       <p><b>Fees: </b></p>
+                                      </div>
+
+                                     <div style="float:right;margin-right:40%;">
+                                          <p id="dname"></p>
+                                        <p id="did"></p>
+                                       <p id="dspec"> </p>
+                                       <p id="dfees"></p>
+                                     </div>
+
+                                 </div>
+                                 <div style="clear:both;"></div>
+                                 <hr>
+                                    <div id="patient_desc" >
+                                         <h5 style="margin-left:4%;text-decoration:underline;">Patient Clinical Description</h5>
+                                        <div style="float:left;margin-left:10%;font-size:12px;line-height:1;">
+                                            <p><b>SYMPTOMS: </b></p>
+                                            <p><b>COMPLICATIONS: </b></p>
+                                            <p><b>PREDICTION: </b></p>
+                                            <p><b>ADDITIONAL REPORT: </b></p>
+                                        </div>
+
+                                        <div id="desc" style="float:left;margin-left:1%;font-size:12px;line-height:1;">
+                                               <p id="symptom"></p>
+                                             <p id="complication"></p>
+                                             <p id="disease"></p>
+                                              <div style="display:flex;">
+                                            <p id="file" style="color:#2180E6"></p>
+                                                  <a href="{{url_for('get_file')}}">
+                                                <form action="/download" method="post" >
+                                                    <input type="text" id="app_val" name="app_val" style="display:none;">
+                                                          <button style="margin-left:10px;background-color:green;color:white;border:none;border-radius:10px;"><i class="fa fa-download" style="font-size:18px"></i></button>
+                                                </form>
+                                              </a>
+                                                 </div>
+
+                                        </div>
+                                 </div>
+                                  <div style="clear:both;"></div>
+                                 <hr>
+                                 <div id="doctor_advice" >
+                                     <h5 style="margin-left:4%;text-decoration:underline;">Doctor Suggestions</h5>
+                                     <div id="doc_sugg_{{ row['Appointment_ID'] }}">
+                                     <form action="/prescribe" method="post" >
+                                            <div style="float:left;font-size:12px;margin:1% 1% 0 6%;">
+                                            <p><b>Found Diseases: </b></p>
+
+                                            <p><b>Diseases Description: </b></p>
+                                            <p><b>Precautions: </b></p>
+                                        </div>
+
+                                         <div style="float:left;max-width:30%;font-size:12px;margin-top:1%;">
+                                          <input type="text" name="dis" id="dis" required style="width:300px;border:none;border-bottom:1px solid black;"><br>
+                                          <input type="text" name="dis_desc" id="dis_desc" required style="margin-top:6px;width:300px;border:none;border-bottom:1px solid black;"><br>
+                                            <input type="text" name="prec" id="prec" required style="margin-top:10px;width:300px;border:none;border-bottom:1px solid black;">
+                                         </div>
+
+                                            <div style="float:left;font-size:12px;margin:1% 1% 0 2%;">
+                                            <p><b>Medications: </b></p>
+                                            <p><b>Diet: </b></p>
+                                            <p><b>Workout: </b></p>
+                                        </div>
+
+                                              <div style="float:left;font-size:12px;max-width:35%;margin-top:1%;">
+                                               <input type="text" name="med" id="med" required style="width:300px;border:none;border-bottom:1px solid black;"><br>
+                                              <input type="text" name="diet" id="diet" required style="margin-top:6px;width:300px;border:none;border-bottom:1px solid black;"><br>
+                                             <input type="text" name="work" id="work" required style="margin-top:10px;width:300px;border:none;border-bottom:1px solid black;">
+                                             </div>
+
+                                         <input type="text" value="" id="pid_appid" name="pid_appid" style="display:none;">
+                                      <button id="cancel" name="cancel" style="margin:2% 0 1% 70%;background-color:red;color:white;border:none;border-radius:5px;">Cancel</button>
+
+                                       <button id="prescribed" type="submit" name="prescribe" style="margin:0 0 1% 2%;background-color:green;color:white;border:none;border-radius:5px;">Prescribe</button>
+                                     </form>
+                                      </div>
+                                 </div>
+
+
+                             </div>
+                     </div>
+
+
+                      <script>
+                       document.getElementById('view_pres_{{ row['Appointment_ID'] }}').addEventListener('click', function()
+                         {
+                          document.getElementById('view_report').style.display='block';
+                            var pname=document.getElementById('patname');
+                            var pemail=document.getElementById('patemail');
+                            var pcontact=document.getElementById('patcontact');
+                            var pgender=document.getElementById('patgender');
+                            var date=document.getElementById('appdate');
+                            var time=document.getElementById('apptime');
+                            var dname=document.getElementById('docname');
+                            var dspec=document.getElementById('docspec');
+                             var did=document.getElementById('docid');
+                            var dfees=document.getElementById('docfees');
+
+                           var appoint={{appointment|tojson}};
+                           appoint.forEach((item)=>{
+                             JSON.stringify(item)
+                               if(item['Appointment_ID']=={{row['Appointment_ID']}})
+                             {
+                                pname.textContent=item['Patient_FName']+" "+item['Patient_LName'];
+                                pemail.textContent=item['Email'];
+                                pcontact.textContent=item['Patient_Contact'];
+                                pgender.textContent=item['Gender'];
+                                date.textContent=item['Date'];
+                                time.textContent=item['Time'];
+                                dname.textContent=item['Doctor_Name'];
+                                dspec.textContent=item['Specialization'];
+                                did.textContent=item['DOC_EMP_ID'];
+                                dfees.textContent=item['Fees'];
+
+                              }
+                         });
+
+                            var symptom=document.getElementById('symp');
+                            var complication=document.getElementById('compli');
+                            var disease=document.getElementById('diseas');
+                            var file=document.getElementById('fileText');
+                           var appVal=document.getElementById('appoint_val');
+
+                            var p_desc={{patient_desc|tojson}};
+                              p_desc.forEach((item)=>{
+                              JSON.stringify(item)
+                              if(item['Appointment_ID']=={{row['Appointment_ID']}})
+                             {
+                                 // alert(item['Appointment_ID']+" "+item['Symptoms']+" "+item['Complications']+" "+item['Predicted_Disease']+" "+item['File_Name']);
+                                 symptom.textContent=item['Symptoms'];
+                                 complication.textContent=item['Complications'];
+                                 disease.textContent=item['Predicted_Disease'];
+                                 file.textContent=item['File_Name'];
+                                 file.textContent=item['File_Name'];
+                                 appVal.value={{row['Appointment_ID']}};
+                                }
+                              })
+
+                              var diseases=document.getElementById('diseases');
+                            var disease_desc=document.getElementById('disease_desc');
+                            var prescription=document.getElementById('pres');
+                            var medication=document.getElementById('medic');
+                            var diets=document.getElementById('diets');
+                            var workout=document.getElementById('workouts');
+
+                                  var presc={{prescription|tojson}};
+                              presc.forEach((item)=>{
+                              JSON.stringify(item)
+                              if(item['Appointment_ID']=={{row['Appointment_ID']}})
+                             {
+                                 diseases.textContent=item['Disease'];
+                                 disease_desc.textContent=item['Dis_Description'];
+                                 prescription.textContent=item['Precaution'];
+                                 medication.textContent=item['Medication'];
+                                 diets.textContent=item['Diet'];
+                                 workout.textContent=item['Workout'];
+                                }
+                              })
+                           });
+
+
+                         document.getElementById('prescribe_{{ row['Appointment_ID'] }}').addEventListener('click', function()
+                         {
+                          document.getElementById('pid_appid').value={{ row['Patient_ID'] }}+" "+{{ row['Appointment_ID'] }};
+                           document.getElementById('report_over').style.display='block';
+
+                            var pname=document.getElementById('pname');
+                            var pemail=document.getElementById('pemail');
+                            var pcontact=document.getElementById('pcontact');
+                            var pgender=document.getElementById('pgender');
+                            var date=document.getElementById('date');
+                            var time=document.getElementById('time');
+                            var dname=document.getElementById('dname');
+                            var dspec=document.getElementById('dspec');
+                             var did=document.getElementById('did');
+                            var dfees=document.getElementById('dfees');
+
+                           var appoint={{appointment|tojson}};
+                           appoint.forEach((item)=>{
+                             JSON.stringify(item)
+                               if(item['Appointment_ID']=={{row['Appointment_ID']}})
+                             {
+                                pname.textContent=item['Patient_FName']+" "+item['Patient_LName'];
+                                pemail.textContent=item['Email'];
+                                pcontact.textContent=item['Patient_Contact'];
+                                pgender.textContent=item['Gender'];
+                                date.textContent=item['Date'];
+                                time.textContent=item['Time'];
+                                dname.textContent=item['Doctor_Name'];
+                                dspec.textContent=item['Specialization'];
+                                did.textContent=item['DOC_EMP_ID'];
+                                dfees.textContent=item['Fees'];
+
+                              }
+                         });
+
+                            var symptom=document.getElementById('symptom');
+                            var complication=document.getElementById('complication');
+                            var disease=document.getElementById('disease');
+                            var file=document.getElementById('file');
+                           var app_val=document.getElementById('app_val');
+
+                            var p_desc={{patient_desc|tojson}};
+                              p_desc.forEach((item)=>{
+                              JSON.stringify(item)
+                              if(item['Appointment_ID']=={{row['Appointment_ID']}})
+                             {
+                                 // alert(item['Appointment_ID']+" "+item['Symptoms']+" "+item['Complications']+" "+item['Predicted_Disease']+" "+item['File_Name']);
+                                 symptom.textContent=item['Symptoms'];
+                                 complication.textContent=item['Complications'];
+                                 disease.textContent=item['Predicted_Disease'];
+                                 file.textContent=item['File_Name'];
+                                 file.textContent=item['File_Name'];
+                                 app_val.value={{row['Appointment_ID']}};
+                                }
+                              })
+
+                              var diseases=document.getElementById('diseases');
+                            var disease_desc=document.getElementById('disease_desc');
+                            var prescription=document.getElementById('prescription');
+                            var medication=document.getElementById('medication');
+                            var diets=document.getElementById('diets');
+                            var workout=document.getElementById('workout');
+
+                                  var presc={{prescription|tojson}};
+                              presc.forEach((item)=>{
+                              JSON.stringify(item)
+                              if(item['Appointment_ID']=={{row['Appointment_ID']}})
+                             {
+                                 diseases.textContent=item['Disease'];
+                                 disease_desc.textContent=item['Dis_Description'];
+                                 prescription.textContent=item['Precaution'];
+                                 medication.textContent=item['Medication'];
+                                 diets.textContent=item['Diet'];
+                                 workout.textContent=item['Workout'];
+                                }
+                              })
+
+                         });
+
+
+                         document.getElementById('cancel').addEventListener('click', function() {
+                           document.getElementById('report_over').style.display = 'none';
+                       });
+                       document.getElementById('close').addEventListener('click', function() {
+                           document.getElementById('view_report').style.display = 'none';
+                       });
+                      </script>
+                      </tr>
+                       {% endif %}
+
+                     {% endfor %}
+
+                </tbody>
+              </table>
+        <br>
+      </div>
+          {% for r in approve %}
+        <script>
+            var approveBtn=document.getElementById("approve_{{r['Appointment_ID']}}");
+             approveBtn.textContent="Approved";
+            approveBtn.style.backgroundColor="green";
+             approveBtn.style.color="white";
+            approveBtn.disabled=true;
+
+             document.getElementById("prescribe_{{r['Appointment_ID']}}").disabled=false;
+
+        </script>
+ {% endfor %}
+        {% for s in submitted %}
+        <script>
+
+              var prescribeBtn=document.getElementById("prescribe_{{s['Appointment_ID']}}");
+                prescribeBtn.style.display='block';
+
+        </script>
+ {% endfor %}
+
+        {% for p in prescribe %}
+        <script>
+
+              var presText=document.getElementById("pres_{{p['Appointment_ID']}}");
+               presText.textContent="prescribed!"
+               presText.style.color="green";
+      document.getElementById("prescribe_{{p['Appointment_ID']}}").style.display='none';
+      document.getElementById("view_pres_{{p['Appointment_ID']}}").style.display='block';
+
+        </script>
+ {% endfor %}
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.1/sweetalert2.all.min.js"></script>
+  </body>
+</html>

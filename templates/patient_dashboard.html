@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="style.css">
+
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+
+        <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <a class="navbar-brand" href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> CureConnect  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <style >
+    .bg-primary {
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #342ac1;
+    border-color: #007bff;
+}
+.text-primary {
+    color: #342ac1!important;
+}
+
+.btn-primary{
+  background-color: #3c50c1;
+  border-color: #3c50c1;
+}
+
+  .button button
+      {
+              font-size:larger;
+               font-weight: 700;
+               color:black;
+               padding:2% 35%;
+               border:2px solid lightgray;
+               border-radius:100px;
+                box-shadow:1px 2px 2px 2px lightgray;
+               background-image:linear-gradient(gray, white);
+      }
+    .button button:hover
+         {
+            background-image:linear-gradient(white, gray);
+            color:white;
+         }
+
+  </style>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <ul class="navbar-nav mr-auto" >
+       <li class="nav-item"  >
+        <a class="nav-link" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+  </head>
+  <style type="text/css">
+    button:hover{cursor:pointer;}
+    #inputbtn:hover{cursor:pointer;}
+  </style>
+  <body style="padding-top:50px;">
+
+</script>
+   <div class="container-fluid" style="margin-top:30px;">
+        {% if msg %}
+       <h5 id="msg">{{msg}}</h5>
+
+           <script>
+                       setTimeout(function(){
+                           document.getElementById("msg").textContent="";
+                            document.getElementById("msg").style="";
+                       },3000);
+           </script>
+       {% endif %}
+    <h3 style = "color:blue;margin-left: 40%;  padding-bottom: 20px; font-family: 'IBM Plex Sans', sans-serif;"> Welcome &nbsp{{name}}
+   </h3>
+       {% if app_fail_Msg %}
+       <h4 id="app_fail_Msg" style="text-align:center;color:red;">{{app_fail_Msg}}</h4>
+        <script>
+                       setTimeout(function(){
+                           document.getElementById("app_fail_Msg").textContent="";
+                            document.getElementById("app_fail_Msg").style="";
+                       },3000);
+           </script>
+          {% endif %}
+
+        {% if app_success_Msg %}
+       <h4 id="app_success_Msg" style="text-align:center;color:green;">{{app_success_Msg}}</h4>
+          <script>
+                       setTimeout(function(){
+                           document.getElementById("app_success_Msg").textContent="";
+                            document.getElementById("app_success_Msg").style="";
+                       },3000);
+           </script>
+       {% endif %}
+
+        {% if desc_msg %}
+       <h4 id="desc_Msg" style="text-align:center;color:green;">{{desc_msg}}</h4>
+          <script>
+                       setTimeout(function(){
+                           document.getElementById("desc_Msg").textContent="";
+                            document.getElementById("desc_Msg").style="";
+                       },3000);
+           </script>
+       {% endif %}
+
+    <div class="row">
+  <div class="col-md-3" style="max-width:25%; margin-top: 3%">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-dash-list" data-toggle="list" href="#list-dash" role="tab" aria-controls="home">Dashboard</a>
+      <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Book Appointment</a>
+      <a class="list-group-item list-group-item-action" href="#app-hist" id="list-pat-list" role="tab" data-toggle="list" aria-controls="home">Appointment History</a>
+      <a class="list-group-item list-group-item-action" href="#list-pres" id="list-pres-list" role="tab" data-toggle="list" aria-controls="home">Availability</a>
+
+    </div><br>
+  </div>
+  <div class="col-md-8" style="margin-top: 3%;">
+    <div class="tab-content" id="nav-tabContent" style="width: 950px;">
+
+
+      <div class="tab-pane fade  show active" id="list-dash" role="tabpanel" aria-labelledby="list-dash-list">
+        <div class="container-fluid container-fullw bg-white" >
+              <div class="row">
+               <div class="col-sm-4" style="left: 5%">
+                  <div class="panel panel-white no-radius text-center">
+                    <div class="panel-body">
+                      <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
+                      <h4 class="StepTitle" style="margin-top: 5%;"> Book My Appointment</h4>
+                      <script>
+                        function clickDiv(id) {
+                          document.querySelector(id).click();
+                        }
+                      </script>
+                      <p class="links cl-effect-1">
+                        <a href="#list-home" onclick="clickDiv('#list-home-list')">
+                          Book Appointment
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-4" style="left: 10%">
+                  <div class="panel panel-white no-radius text-center">
+                    <div class="panel-body" >
+                      <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
+                      <h2 class="StepTitle" style="margin-top: 5%;">My Appointments</h2>
+
+                      <p class="cl-effect-1">
+                        <a href="#app-hist" onclick="clickDiv('#list-pat-list')">
+                          View Appointment History
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="col-sm-4" style="left: 20%;margin-top:5%">
+                  <div class="panel panel-white no-radius text-center">
+                    <div class="panel-body" >
+                      <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-list-ul fa-stack-1x fa-inverse"></i> </span>
+                      <h2 class="StepTitle" style="margin-top: 5%;">Availability</h2>
+
+                      <p class="cl-effect-1">
+                        <a href="#list-pres" onclick="clickDiv('#list-pres-list')">
+                          View Available Doctor
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+
+            </div>
+          </div>
+
+
+
+
+
+      <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+        <div class="container-fluid">
+
+          <div class="card">
+            <div class="card-body">
+              <center><h4>Create an appointment</h4></center><br>
+              <form class="form-group" method="post" action="/book_appointment">
+                <div class="row">
+
+
+                    <div class="col-md-4">
+                          <label for="spec">Specialization:</label>
+                        </div>
+                        <div class="col-md-8">
+                          <select name="spec" class="form-control" id="spec" onchange="updateDoctor()">
+                              <option value=""  selected>Select Specialization</option>
+                              {% for spec in specialization %}
+                                <option value="{{ spec }}">{{ spec }}</option>
+                              {% endfor %}
+                          </select>
+                        </div>
+
+                        <br><br>
+                   <script>
+                         function updateDoctor()
+                          {
+                                   var doc = {
+                                             {% for key, value in doctor.items() %}
+                                                  "{{ key }}": {% if value is iterable and value is not string %} [
+                                                      {% for item in value %}
+                                                         "{{ item }}"{% if not loop.last %}, {% endif %}
+                                                      {% endfor %}]
+                                                     {% else %}"{{ value }}"{% endif %}{% if not loop.last %},{% endif %}
+                                             {% endfor %}
+                                              };
+
+                                   var spec = document.getElementById('spec').value;
+                                   var doctor = document.getElementById('doctor');
+                                   doctor.innerHTML=''
+                                   if(spec)
+                                   {
+                                         var docName=doc[spec];
+                                          var option = document.createElement('option');
+                                                 option.textContent = "Select Doctor";
+                                                 option.value = "";
+                                                 doctor.appendChild(option);
+
+                                         docName.forEach(function(name){
+                                                var option = document.createElement('option');
+                                                 option.textContent = name;
+                                                 option.value = name;
+                                                 doctor.appendChild(option);
+
+                                         });
+                                   }
+                              }
+
+
+                   </script>
+
+              <div class="col-md-4"><label for="doctor">Doctors:</label></div>
+                <div class="col-md-8">
+                    <select name="doctor" class="form-control" id="doctor" onchange="updateFees()" required="required">
+                      <option value="" disabled selected>Select Doctor</option>
+
+                    </select>
+                  </div><br/><br/>
+
+                    <script>
+                    function updateFees(){
+
+                               var fee = {
+                                             {% for key, value in fees.items() %}
+                                                  "{{ key }}": {% if value is iterable and value is not string %} [
+                                                      {% for item in value %}
+                                                         "{{ item }}"{% if not loop.last %}, {% endif %}
+                                                      {% endfor %}]
+                                                     {% else %}"{{ value }}"{% endif %}{% if not loop.last %},{% endif %}
+                                             {% endfor %}
+                                              };
+
+                              var spec = document.getElementById('spec').value;
+                                   var doctor = document.getElementById('doctor').value;
+                               var docFees = document.getElementById('docFees');
+
+                               if(spec && doctor)
+                               {
+                                  var dFees=fee[doctor+" "+spec]
+
+                                  docFees.value=dFees;
+                               }
+
+                       }
+            </script>
+
+                  <div class="col-md-4"><label for="consultancyfees">
+                                Consultancy Fees
+                              </label></div>
+                              <div class="col-md-8">
+                              <!-- <div id="docFees">Select a doctor</div> -->
+                              <input class="form-control" type="text" name="docFees" id="docFees" readonly="readonly"/>
+                  </div><br><br>
+
+                  <div class="col-md-4"><label>Appointment Date</label></div>
+                  <div class="col-md-8"><input type="date" class="form-control datepicker" name="appdate"></div><br><br>
+
+                  <div class="col-md-4"><label>Appointment Time</label></div>
+                  <div class="col-md-8">
+                    <!-- <input type="time" class="form-control" name="apptime"> -->
+                    <select name="apptime" class="form-control" id="apptime" required="required">
+                      <option value="" disabled selected>Select Time</option>
+                      <option value="08:00:00">8:00 AM</option>
+                      <option value="10:00:00">10:00 AM</option>
+                      <option value="12:00:00">12:00 PM</option>
+                      <option value="14:00:00">2:00 PM</option>
+                      <option value="16:00:00">4:00 PM</option>
+                    </select>
+
+                  </div><br><br>
+
+                  <div class="col-md-4">
+                    <input type="submit" name="app-submit" value="Book Appointment" class="btn btn-primary" id="inputbtn">
+                  </div>
+                  <div class="col-md-8"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div><br>
+      </div>
+
+<script>
+
+
+</script>
+
+<div class="tab-pane fade" id="app-hist" role="tabpanel" aria-labelledby="list-pat-list">
+
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                      <th>Appointment ID</th>
+                    <th scope="col">Doctor Name</th>
+                      <th>Specialization</th>
+                    <th scope="col"> Fees</th>
+                    <th scope="col"> Date</th>
+                    <th scope="col"> Time</th>
+                    <th scope="col"> Status</th>
+                  </tr>
+                </thead>
+                <tbody >
+                {% for row in appHistory %}
+                   {% if pid==row['Patient_ID'] %}
+                <tr style="font-size:14px;">
+                    <td >{{ row['Appointment_ID'] }}</td>
+                    <td>{{ row['Doctor_Name'] }}</td>
+                    <td >{{ row['Specialization'] }}</td>
+                    <td >{{ row['Fees'] }}</td>
+                    <td >{{ row['Date'] }}</td>
+                    <td >{{ row['Time'] }}</td>
+
+                    <td >
+                        <button id="pendingBtn_{{ pid }}_{{ row['Appointment_ID'] }}" pending-button-id="{{ pid }}_{{ row['Appointment_ID'] }}" disabled  style="color:red;padding:6px 8px;font-size:12px;background-color:yellow;border:none;border-radius:5px;">PENDING</button>
+
+                         <button id="report_{{ pid }}_{{ row['Appointment_ID'] }}" disabled style="display:none;border:none;background-color:white;">
+                             <span >
+                                         <i class="fa fa-file"></i>
+                              <p id="reportStatus_{{ pid }}_{{ row['Appointment_ID'] }}" style="color:red;font-size:12px;">not generated!</p>
+                                    </span>
+                          </button>
+
+                    </td>
+
+                    <div id="overlay" class="overlay" style="display:none;position: fixed;top: 0; left: 0;width: 100%;height: 100%; background-color: rgba(0, 0, 0, 0.5);z-index: 9999;">
+                        <div style="background-color:white;height:auto;width:45%;text-align:center;margin:3% auto;padding: 20px; border-radius: 20px;box-shadow: 1px 1px 20px 10px rgba(0, 0, 0, 0.5);">
+                            <i class="fa fa-times-circle" id="closeBtn" style="color:red;float:right;font-size:24px;cursor:pointer"></i>
+                            <h2 style="">Enter Patient Description</h2>
+                            <form action="/patient_desc" method="post" enctype="multipart/form-data">
+                                <div id="input_field" style="margin:6% auto;background-color:lightgray;padding-top:4%;border-radius:20px;box-shadow:1px 1px 20px 1px gray;">
+                                    <input type="text" name="symp" id="symp" placeholder="symptoms" required style="width:70%;margin-bottom:4%;padding:25px;border-radius:10px;"><br>
+                                   <input type="text" name="comp" id="comp" placeholder="complication"  style="width:70%;margin-bottom:4%;padding:15px;border-radius:10px;"><br>
+                                   <input type="text" name="dis" id="dis" placeholder="predicted diseases" style="width:70%;margin-bottom:4%;padding:15px;border-radius:10px;"><br>
+                                  <div style="position:relative;">
+                                        <label for="reports" id="filename" class="custom-file-upload" style="width:70%;padding:15px 0 15px 10px;text-align:left;color:gray;border:2px solid black;background-color:white;border-radius:10px;margin-bottom:4%;cursor:pointer">
+                                        additional reports
+                                    </label>
+                                    <span style="position:absolute;left:80%;margin-top:3%;color:gray;cursor:pointer;">
+                                         <i class="fa fa-file"></i>
+                                    </span>
+
+                                    <input type="file" name="reports" id="reports" style="display:none;" onchange="updateFileName()">
+                                  </div>
+
+                                </div>
+                                <input type="text" name="pat_app_id" id="pat_app_id" style="display:none;">
+                                 <div class="button" style="margin-bottom:6%;">
+                                     <button  id="done_{{ pid }}_{{ row['Appointment_ID'] }}" value="{{ pid }}_{{ row['Appointment_ID'] }}">SUBMIT</button>
+                                 </div>
+
+                            </form>
+                        </div>
+                  </div>
+                    <script>
+              function updateFileName()
+              {
+                var report=document.getElementById("reports");
+                 var label=document.getElementById("filename");
+                 const filename=report.files[0].name;
+                 label.innerText=filename;
+              }
+                    </script>
+                        <div id="report_over" style="display:none;position: fixed;top: 0; left: 0;width: 100%;height: 100%; background-color: rgba(0, 0, 0, 0.9);z-index: 9999;">
+                             <div id="report_body" style="position:absolute;top:1%;left:10%;background-color:white;width:80%;height:auto;border-radius:0 0 10px 10px;box-shadow:0 0 10px 5px gray; ">
+
+                                 <div id="header" style="text-align:center;">
+                                       <h3>CureConnect Report</h3>
+                                     <p style="font-size:12px;"><b>Connect: </b>itscureconnect@gmail.com</p>
+
+                                 </div>
+                                  <hr>
+                                 <div id="patient_info" style="float:left;display:flex;height:20%;width:60%;font-size:12px;border-right:1px solid black;">
+                                      <div style="margin-left:8%;">
+                                           <p ><b>Patient Name: </b></p>
+                                       <p ><b>Email: </b></p>
+                                       <p ><b>Phone: </b></p>
+                                      </div>
+                                     <div id="desc_val1">
+                                           <p id="pname"></p>
+                                       <p id="pemail"></p>
+                                       <p id="pcontact"></p>
+                                     </div>
+                                     <div style="margin-left:20%;">
+                                          <p ><b>Gender: </b></p>
+                                       <p ><b>Appointment Date: </b></p>
+                                       <p><b>Appointment Time: </b></p>
+                                     </div>
+                                     <div id="desc_val2">
+                                           <p id="pgender"></p>
+                                       <p id="date"></p>
+                                       <p id="time"></p>
+                                     </div>
+                                 </div>
+
+                                 <div id="doctor_info" style="float:right;height:20%;width:40%;font-size:12px;line-height:1;">
+                                      <div style="float:left;margin-left:8%;">
+                                           <p><b>Doctor Name: </b></p>
+                                        <p><b>Doctor ID: </b></p>
+                                       <p><b>Specialization: </b> </p>
+                                       <p><b>Fees: </b></p>
+                                      </div>
+
+                                     <div style="float:right;margin-right:40%;">
+                                          <p id="dname"></p>
+                                        <p id="did"></p>
+                                       <p id="dspec"> </p>
+                                       <p id="dfees"></p>
+                                     </div>
+
+                                 </div>
+                                 <div style="clear:both;"></div>
+                                 <hr>
+                                    <div id="patient_desc" >
+                                         <h5 style="margin-left:4%;text-decoration:underline;">Patient Clinical Description</h5>
+                                        <div style="float:left;margin-left:10%;font-size:12px;line-height:1;">
+                                            <p><b>SYMPTOMS: </b></p>
+                                            <p><b>COMPLICATIONS: </b></p>
+                                            <p><b>PREDICTION: </b></p>
+                                            <p><b>ADDITIONAL REPORT: </b></p>
+                                        </div>
+
+                                        <div id="desc" style="float:left;margin-left:1%;font-size:12px;line-height:1;">
+                                               <p id="symptom"></p>
+                                             <p id="complication"></p>
+                                             <p id="disease"></p>
+                                                 <div style="display:flex;">
+                                            <p id="file" style="color:#2180E6"></p>
+                                                  <a href="{{url_for('get_file')}}">
+                                                <form action="/download" method="post" >
+                                                    <input type="text" id="app_val" name="app_val" style="display:none;">
+                                                          <button style="margin-left:10px;background-color:green;color:white;border:none;border-radius:10px;"><i class="fa fa-download" style="font-size:18px"></i></button>
+                                                </form>
+                                              </a>
+                                                 </div>
+                                        </div>
+                                 </div>
+                                  <div style="clear:both;"></div>
+                                 <hr>
+                                 <div id="doctor_advice" >
+                                     <h5 style="margin-left:4%;text-decoration:underline;">Doctor Suggestions</h5>
+
+                                            <div style="float:left;font-size:12px;margin:1% 1% 0 6%;">
+                                            <p><b>Found Diseases: </b></p>
+
+                                            <p><b>Diseases Description: </b></p>
+                                            <p><b>Precautions: </b></p>
+                                        </div>
+
+                                         <div style="float:left;width:30%;max-width:30%;font-size:12px;margin-top:1%;">
+                                           <p id="diseases"></p>
+                                             <p id="dis_desc"></p>
+                                             <p id="pres"></p>
+                                         </div>
+
+                                            <div style="float:left;font-size:12px;margin:1% 1% 0 2%;">
+                                            <p><b>Medications: </b></p>
+                                            <p><b>Diet: </b></p>
+                                            <p><b>Workout: </b></p>
+                                        </div>
+
+                                              <div style="float:left;font-size:12px;max-width:35%;margin-top:1%;">
+                                             <p id="medic"></p>
+                                                  <p id="diet"></p>
+                                                  <p id="workout"></p>
+                                             </div>
+
+                                         <input type="text" value="" id="pid_appid" name="pid_appid" style="display:none;">
+                                      <button id="cancel" name="cancel" style="margin:2% 0 1% 80%;background-color:red;color:white;border:none;border-radius:5px;">Cancel</button>
+
+
+                                 </div>
+
+
+                             </div>
+                     </div>
+    <script>
+
+        // Open the modal overlay
+document.getElementById('pendingBtn_{{ pid }}_{{ row['Appointment_ID'] }}').addEventListener('click', function() {
+    document.getElementById('overlay').style.display = 'block';
+      document.getElementById('pat_app_id').value={{ pid }}+" "+{{ row['Appointment_ID'] }};
+
+});
+
+// Close the modal overlay
+document.getElementById('closeBtn').addEventListener('click', function() {
+    document.getElementById('overlay').style.display = 'none';
+});
+
+
+document.getElementById('report_{{ pid }}_{{ row['Appointment_ID'] }}').addEventListener('click', function() {
+        document.getElementById('report_over').style.display = 'block';
+
+         var pname=document.getElementById('pname');
+                            var pemail=document.getElementById('pemail');
+                            var pcontact=document.getElementById('pcontact');
+                            var pgender=document.getElementById('pgender');
+                            var date=document.getElementById('date');
+                            var time=document.getElementById('time');
+                            var dname=document.getElementById('dname');
+                            var dspec=document.getElementById('dspec');
+                             var did=document.getElementById('did');
+                            var dfees=document.getElementById('dfees');
+
+                           var appoint={{appHistory|tojson}};
+                           appoint.forEach((item)=>{
+                             JSON.stringify(item)
+                               if(item['Appointment_ID']=={{row['Appointment_ID']}})
+                             {
+                                pname.textContent=item['Patient_FName']+" "+item['Patient_LName'];
+                                pemail.textContent=item['Email'];
+                                pcontact.textContent=item['Patient_Contact'];
+                                pgender.textContent=item['Gender'];
+                                date.textContent=item['Date'];
+                                time.textContent=item['Time'];
+                                dname.textContent=item['Doctor_Name'];
+                                dspec.textContent=item['Specialization'];
+                                did.textContent=item['DOC_EMP_ID'];
+                                dfees.textContent=item['Fees'];
+
+                              }
+                         });
+
+                            var symptom=document.getElementById('symptom');
+                            var complication=document.getElementById('complication');
+                            var disease=document.getElementById('disease');
+                            var file=document.getElementById('file');
+                             var app_val=document.getElementById('app_val');
+
+                            var p_desc={{patient_desc|tojson}};
+                              p_desc.forEach((item)=>{
+                              JSON.stringify(item)
+                              if(item['Appointment_ID']=={{row['Appointment_ID']}})
+                             {
+
+                                 symptom.textContent=item['Symptoms'];
+                                 complication.textContent=item['Complications'];
+                                 disease.textContent=item['Predicted_Disease'];
+                                 file.textContent=item['File_Name'];
+                                 file.textContent=item['File_Name'];
+                                  app_val.value={{row['Appointment_ID']}};
+                                }
+                              })
+
+                          var diseases=document.getElementById('diseases');
+                            var dis_desc=document.getElementById('dis_desc');
+                            var pres=document.getElementById('pres');
+                            var medic=document.getElementById('medic');
+                            var diet=document.getElementById('diet');
+                            var workout=document.getElementById('workout');
+
+                              var presc={{prescription|tojson}};
+                              presc.forEach((item)=>{
+                              JSON.stringify(item)
+                              if(item['Appointment_ID']=={{row['Appointment_ID']}})
+                             {
+
+                                 diseases.textContent=item['Disease'];
+                                 dis_desc.textContent=item['Dis_Description'];
+                                 pres.textContent=item['Precaution'];
+                                 medic.textContent=item['Medication'];
+                                 diet.textContent=item['Diet'];
+                                 workout.textContent=item['Workout'];
+                                }
+                              })
+});
+document.getElementById('cancel').addEventListener('click', function() {
+    document.getElementById('report_over').style.display = 'none';
+});
+ </script>
+
+                      </tr>
+                        {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+        <br>
+      </div>
+          {% for r in approve %}
+        <script>
+              var approveBtn=document.getElementById("pendingBtn_{{r['Patient_ID']}}_{{r['Appointment_ID']}}");
+             approveBtn.textContent="Approved";
+            approveBtn.style.backgroundColor="green";
+             approveBtn.style.color="white";
+
+               approveBtn.disabled=false;
+        </script>
+ {% endfor %}
+
+        {% for s in submitted %}
+        <script>
+
+              var pendingBtn=document.getElementById("pendingBtn_{{s['Patient_ID']}}_{{s['Appointment_ID']}}");
+                pendingBtn.style.display='none';
+
+                var reportBtn=document.getElementById("report_{{s['Patient_ID']}}_{{s['Appointment_ID']}}");
+                reportBtn.style.display='block';
+        </script>
+ {% endfor %}
+
+{% for p in prescribe %}
+        <script>
+
+            var report=document.getElementById("report_{{p['Patient_ID']}}_{{p['Appointment_ID']}}");
+            report.disabled=false;
+
+              var presText=document.getElementById("reportStatus_{{p['Patient_ID']}}_{{p['Appointment_ID']}}");
+               presText.textContent="generated!"
+               presText.style.color="green";
+
+
+        </script>
+ {% endfor %}
+
+        <div class="tab-pane fade" id="approved" role="tabpanel"  aria-labelledby="list-approve">
+                   <h2>Patient Symptoms</h2>
+
+        </div>
+
+      <div class="tab-pane fade"  id="list-pres" role="tabpanel"  aria-labelledby="list-pres-list">
+
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+
+                    <th scope="col">Doctor Name</th>
+                    <th scope="col">Specialization</th>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Fees</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   {% for avail in available %}
+                      <tr>
+                        <td>{{avail['Doctor_Name']}}</td>
+                        <td>{{avail['Specialization']}}</td>
+                        <td>{{avail['Employee_ID']}}</td>
+                        <td>{{avail['Email']}}</td>
+                        <td>{{avail['Fees']}}</td>
+                        <td ><p style="margin-left:8%;height:20px;width:20px;border-radius:50%;background-color:green;box-shadow: 0 0 20px 5px rgba(0, 255, 0, 0.7);"></p></td>
+                      </tr>
+                     {% endfor %}
+
+                </tbody>
+              </table>
+        <br>
+      </div>
+
+
+
+
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+        <form class="form-group" method="post" action="func.php">
+          <label>Doctors name: </label>
+          <input type="text" name="name" placeholder="Enter doctors name" class="form-control">
+          <br>
+          <input type="submit" name="doc_sub" value="Add Doctor" class="btn btn-primary">
+        </form>
+      </div>
+       <div class="tab-pane fade" id="list-attend" role="tabpanel" aria-labelledby="list-attend-list">...</div>
+    </div>
+  </div>
+</div>
+   </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.1/sweetalert2.all.min.js">
+   </script>
+
+
+
+  </body>
+</html>
